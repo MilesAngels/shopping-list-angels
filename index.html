@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./CSS/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Stylesheet -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./CSS/style.css" />
     <title>Shopping List Angels</title>
-</head>
-<body>
+  </head>
+  <body>
     <main>
-        <h1>Shopping List</h1>
-        <form id="item-input-form" action="#">
-            <input type="text" name="item-input" id="item-input" placeholder="Enter new item">
-            <button type="button" id="add-item">+</button>
-        </form>
-        <section id="item-list-container">
-            <ul>
-                <li class="item">Example 1</li>
-            </ul>
-        </section>
+      <h1 id="app-title">Shopping List</h1>
+      <form id="item-input-form" action="#">
+        <input
+          type="text"
+          name="item-input"
+          id="item-input"
+          placeholder="Enter new item"
+        /><button type="button" id="add-item-btn">+</button>
+      </form>
+      <section id="item-list-container">
+        <ul id="item-list">
+        </ul>
+      </section>
     </main>
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
