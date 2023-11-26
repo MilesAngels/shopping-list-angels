@@ -1,0 +1,33 @@
+// Reset
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/**********************/
+/******** BODY ********/
+/*********************/
+body {
+  background-color: #d1cfe2;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/**********************/
+/******** FORM ********/
+/*********************/
+#item-input-form {
+  // Input to add item to list
+  #item-input {
+    border-radius: 20px;
+    border: none;
+    padding: 0.5em 0em 0.5em 0.75em;
+  }
+}
