@@ -24,6 +24,7 @@ main {
 main #app-title {
   color: #131926;
   font-family: "Dancing Script", cursive;
+  font-size: 2.5em;
 }
 
 /**********************/
@@ -43,6 +44,8 @@ main #app-title {
   border: none;
   border-radius: 0 10px 10px 0;
   background-color: #9cadce;
+  font-size: 15px;
+  font-weight: bold;
   padding: 0.6em;
 }
 
@@ -60,9 +63,14 @@ main #app-title {
 #item-list-container ul .item {
   width: min(100%, 350px);
   display: flex;
-  gap: 1em;
+  justify-content: space-between;
   margin: 0 auto;
   padding: 0.5em 1em;
   background-color: #d4afb9;
   border-radius: 10px;
+}
+#item-list-container ul .remove-btn {
+  background-color: transparent;
+  color: rgb(62, 21, 21);
+  border: none;
 }/*# sourceMappingURL=style.css.map */
