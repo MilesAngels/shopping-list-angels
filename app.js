@@ -1,104 +1,73 @@
+/* SHOPPING LIST PROJECT SPECS
+*  - Add items to list using a small form
+*  - Remove items from list by clicking the "x" button
+*  - Clear all items with "clear" button
+*  - Filter items by typing in the filter field
+*  - Add localStorage to persist items
+*  - Click on an item to put int0o "edit mode" and add to form
+*  - Update item
+*/
+
+// Global Variables
 const form = document.getElementById('item-input-form');
-const newItem = document.getElementById('item-input');
-const ul = document.getElementById('item-list');
+const userInput = document.getElementById('item-input');
+const itemList = document.getElementById('item-list');
 
-function displayItems() {
-    const itemsFromStorage = getItemsFromStorage();
-    itemsFromStorage.forEach(item => addItemToDOM(item));
-}
-
-// Add new Item function
-function addNewItem(event) {
+// Functions
+let addItem = (event) => {
     event.preventDefault();
-    
-    // Validate if newItem is not empty
-    if(newItem.value === '') {
-        alert('Please add new item');
+
+    // We can only get the accurate value after the user hits the add button
+    const newItem = userInput.value;
+
+    // Validate input to make sure the user cannot submit an empty entry
+    if (newItem === '') {
+        alert('Please add an item.');
         return;
     }
 
-    //Create new list item
-    addItemToDOM(newItem.value);
-
-    addItemToStorage(newItem.value);
-    
-    form.reset();
-
-}
-
-function addItemToDOM(item) {
+    // Create list item
     const li = document.createElement('li');
-    li.className = "item"; // Add class item to list-item
-    const removeButton = document.createElement('button'); // Create an icon element
-    removeButton.classList.add("remove-btn", "fa-solid", "fa-xmark");
-
-    li.appendChild(document.createTextNode(item));
-    li.appendChild(removeButton);
-    ul.appendChild(li);
-}
-
-function onclickItem(event) {
-    if (event.target.classList.contains('remove-btn')) { 
-        removeItem(event.target.parentNode);
-    }
-}
-
-// Remove item on list
-function removeItem(item) {
-    if(confirm('Are you sure?')) {
-        // Remove item from DOM
-        item.remove();
-
-        //Remove item from storage
-        removeItemFromStorage(item.textContent);
-    }
-}
-
-function removeItemFromStorage(item) {
-    let itemsFromStorage = getItemsFromStorage();
-
-    //Filter out items to removed
-    itemsFromStorage = itemsFromStorage.filter((i) => i !== item);
-
-    //Reset to local storage
-    localStorage.setItem('items', JSON.stringify(itemsFromStorage));
-}
-
-function addItemToStorage (item) {
-    const itemsFromStorage = getItemsFromStorage(); 
     
-    // Add items to array
-    itemsFromStorage.push(item);
+    // Append the value from newItem to list item
+    li.appendChild(document.createTextNode(newItem));
 
-    //Convert to JSON string and set to local storage
-    localStorage.setItem('items', JSON.stringify(itemsFromStorage));
+    // Create removeButton via the createButton function pass the class/es needed and append it to the list item
+    const removeButton = createButton('remove-item-btn');
+    li.appendChild(removeButton);
+
+    // Append the list item to the ul called itemList
+    itemList.appendChild(li);
 }
 
-function getItemsFromStorage() {
-    let itemsFromStorage;
-    // Check if local storage is empty
-    // If true, set it to an empty array
-    if(localStorage.getItem('items') === null) {
-        itemsFromStorage = [];
-    }
-    //If false, parse items from local storage to save it in itemsFromStorage as an array
-    else {
-        itemsFromStorage = JSON.parse(localStorage.getItem('items'));
-    }
+/* Helper functions */
+// Create each remove button and return the remove button to be appended to the list item
+let createButton = (btnClass) => {
 
-    return itemsFromStorage;
+    // Create button element
+    const removeButton = document.createElement('button');
+
+    // Add class/es to button
+    removeButton.className = btnClass;
+
+    // Create the 'x' icon via the createIcon function and pass the class/es needed
+    const icon = createIcon('fa-solid fa-xmark');
+
+    // Append the icon to the removeButton
+    removeButton.appendChild(icon);
+    return removeButton;
 }
 
-//Initialize App
-function init() {
-    // Add new Item on Submit
-    form.addEventListener('submit', addNewItem);
+// Create each icon then return icon to be appended to remove button
+let createIcon = (iconClasses) => {
 
-    // Remove Item when clicking X (close button)
-    ul.addEventListener('click', onclickItem);
+    // Create icon element 
+    const icon = document.createElement('i');
 
-    // Display items to DOM from local storage
-    document.addEventListener('DOMContentLoaded', displayItems)
+    // Add icon class/es
+    icon.className = iconClasses;
+    return icon;
 }
 
-init();
+// Event Listers
+form.addEventListener('submit', addItem);

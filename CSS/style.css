@@ -31,6 +31,7 @@ main #app-title {
 /******** FORM ********/
 /*********************/
 #item-input-form {
+  margin: 1.75em 0 0.75em 0;
   display: flex;
   width: min(100%, 350px);
 }
@@ -40,6 +41,9 @@ main #app-title {
   border: 1px solid #9cadce;
   padding: 0.5em 0em 0.5em 0.75em;
 }
+#item-input-form #item-input:focus {
+  outline: 1px solid #9cadce;
+}
 #item-input-form #add-item-btn {
   border: none;
   border-radius: 0 10px 10px 0;
@@ -47,6 +51,25 @@ main #app-title {
   font-size: 15px;
   font-weight: bold;
   padding: 0.6em;
+}
+#item-input-form:focus {
+  filter: drop-shadow(-3px 16px 10px #9cadce);
+}
+
+#filter-container {
+  width: min(100%, 350px);
+}
+#filter-container #filter {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  padding: 0.5em;
+  border-bottom: 2px solid #9cadce;
+}
+#filter-container #filter:focus {
+  outline: 2px solid #9cadce;
+  border-radius: 10px;
+  background-color: white;
 }
 
 #item-list-container {
@@ -69,8 +92,26 @@ main #app-title {
   background-color: #d4afb9;
   border-radius: 10px;
 }
-#item-list-container ul .remove-btn {
+#item-list-container ul .item:hover {
+  filter: drop-shadow(-3px 5px 5px #b2959d);
+}
+#item-list-container ul .remove-item-btn {
   background-color: transparent;
   color: rgb(62, 21, 21);
   border: none;
+}
+
+#clear {
+  border: none;
+  width: min(100%, 350px);
+  border-radius: 10px;
+  background-color: #9cadce;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 0.6em;
+}
+#clear:hover {
+  background-color: #e9e7fe;
+  border: 1px solid #9cadce;
+  filter: drop-shadow(-3px 5px 5px #9cadce);
 }/*# sourceMappingURL=style.css.map */

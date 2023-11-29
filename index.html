@@ -26,7 +26,10 @@
   </head>
   <body>
     <main>
+       <!-- Shopping App Title -->
       <h1 id="app-title">Shopping List</h1>
+
+      <!-- Add Item Form -->
       <form id="item-input-form">
         <input
           type="text"
@@ -35,9 +38,30 @@
           placeholder="Enter new item"
         /><button type="submit" id="add-item-btn">+</button>
       </form>
-      <section id="item-list-container">
-        <ul id="item-list"></ul>
+
+      <!--  Filter -->
+      <section id="filter-container">
+        <input
+          type="text"
+          name="form-filter"
+          id="filter"
+          placeholder="Filter Items"
+        />
       </section>
+
+      <!-- Display item list -->
+      <section id="item-list-container">
+        <ul id="item-list">
+          <li class="item">
+            Hello<button class="remove-item-btn">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Clear button -->
+      <button id="clear">Clear All</button>
     </main>
     <script src="app.js"></script>
   </body>

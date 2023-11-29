@@ -33,6 +33,7 @@ main {
 /******** FORM ********/
 /*********************/
 #item-input-form {
+  margin: 1.75em 0 0.75em 0;
   display: flex;
   width: min(100%, 350px);
   // Input to add item to list
@@ -41,7 +42,12 @@ main {
     border-radius: 10px 0 0 10px;
     border: 1px solid #9cadce;
     padding: 0.5em 0em 0.5em 0.75em;
+
+    &:focus {
+      outline: 1px solid #9cadce;
+    }
   }
+  
   // Input Button
   #add-item-btn {
     border: none;
@@ -52,6 +58,27 @@ main {
     padding: 0.6em;
   }
 
+  &:focus {
+    filter: drop-shadow(-3px 16px 10px #9cadce);
+  }
+}
+
+#filter-container {
+  width: min(100%, 350px);
+  #filter {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    padding: 0.5em;
+    border-bottom: 2px solid #9cadce;
+
+    &:focus {
+      outline: 2px solid #9cadce;
+      border-radius: 10px;
+      background-color: white;
+    }
+  }
+  
 }
 
 #item-list-container {
@@ -71,9 +98,14 @@ main {
       padding: 0.5em 1em;
       background-color: #d4afb9;
       border-radius: 10px;
+
+      &:hover {
+
+        filter: drop-shadow(-3px 5px 5px #b2959d);
+      }
     }
 
-    .remove-btn{
+    .remove-item-btn{
       background-color: transparent;
       color: rgb(62, 21, 21);
       border: none;
@@ -81,3 +113,21 @@ main {
 
   }
 }
+
+// Clear all items from page button
+#clear {
+    border: none;
+    width: min(100%, 350px);
+    border-radius: 10px;
+    background-color: #9cadce;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 0.6em;
+
+    &:hover {
+      background-color: #e9e7fe;
+      border: 1px solid #9cadce;
+      filter: drop-shadow(-3px 5px 5px #9cadce);
+    }
+}
+// Create an alert box
