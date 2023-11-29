@@ -12,6 +12,7 @@
 const form = document.getElementById('item-input-form');
 const userInput = document.getElementById('item-input');
 const itemList = document.getElementById('item-list');
+const itemFilter = document.getElementById('filter');
 const itemClear = document.getElementById('clear-display');
 
 /* Main Functions */
@@ -42,6 +43,9 @@ let addItem = (event) => {
     // Append the list item to the ul called itemList
     itemList.appendChild(li);
 
+    // Check if there are items are being displayed.
+    checkUI();
+
     // Reset Form after appending new item to ul
     form.reset();
 }
@@ -51,18 +55,42 @@ let removeItem = (event) => {
 
     // Check if the element we are targeting has a parent element with a class called remove-item-btn
     if (event.target.parentElement.classList.contains('remove-item-btn')) {
-
-        // If true, remove the entire list item
-        event.target.parentElement.parentElement.remove();
+        if (confirm('Are you sure that you want to delete the item/s?')) {
+            // If true, remove the entire list item
+            event.target.parentElement.parentElement.remove();
+            checkUI();
+        }
     }
 }
 
+
+
 // Clear all displayed items
-let clearItems = (event) => {
+let clearItems = () => {
     while (itemList.firstChild) {
         itemList.removeChild(itemList.firstChild);
     }
+    
+    checkUI();
 }
+
+// Check if there are displayed items in the DOM
+let checkUI = () => {
+    const displayedItems = itemList.querySelectorAll('li');
+
+    // Check whether there are items currently being displayed or not
+    if (displayedItems.length === 0) {
+        // If there are no items displayed then, set clear button and filter style to display: none;
+        itemClear.style.display = 'none';
+        itemFilter.style.display = 'none';
+    }
+    else {
+        // If false, set clear all button and filter to display block
+        itemClear.style.display = 'block';
+        itemFilter.style.display = 'block';
+    }
+}
+
 
 /* Helper functions */
 // Create each remove button and return the remove button to be appended to the list item
@@ -97,3 +125,5 @@ let createIcon = (iconClasses) => {
 form.addEventListener('submit', addItem);
 itemList.addEventListener('click', removeItem);
 itemClear.addEventListener('click', clearItems);
+
+checkUI();
