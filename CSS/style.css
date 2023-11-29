@@ -101,7 +101,7 @@ main #app-title {
   border: none;
 }
 
-#clear {
+#clear-display {
   border: none;
   width: min(100%, 350px);
   border-radius: 10px;
@@ -110,7 +110,7 @@ main #app-title {
   font-size: 15px;
   padding: 0.6em;
 }
-#clear:hover {
+#clear-display:hover {
   background-color: #e9e7fe;
   border: 1px solid #9cadce;
   filter: drop-shadow(-3px 5px 5px #9cadce);

@@ -12,8 +12,10 @@
 const form = document.getElementById('item-input-form');
 const userInput = document.getElementById('item-input');
 const itemList = document.getElementById('item-list');
+const itemClear = document.getElementById('clear-display');
 
-// Functions
+/* Main Functions */
+// Add items function
 let addItem = (event) => {
     event.preventDefault();
 
@@ -26,9 +28,10 @@ let addItem = (event) => {
         return;
     }
 
-    // Create list item
+    // Create list item and add class/es needed
     const li = document.createElement('li');
-    
+    li.classList.add('item');
+
     // Append the value from newItem to list item
     li.appendChild(document.createTextNode(newItem));
 
@@ -38,6 +41,27 @@ let addItem = (event) => {
 
     // Append the list item to the ul called itemList
     itemList.appendChild(li);
+
+    // Reset Form after appending new item to ul
+    form.reset();
+}
+
+// Remove items function
+let removeItem = (event) => {
+
+    // Check if the element we are targeting has a parent element with a class called remove-item-btn
+    if (event.target.parentElement.classList.contains('remove-item-btn')) {
+
+        // If true, remove the entire list item
+        event.target.parentElement.parentElement.remove();
+    }
+}
+
+// Clear all displayed items
+let clearItems = (event) => {
+    while (itemList.firstChild) {
+        itemList.removeChild(itemList.firstChild);
+    }
 }
 
 /* Helper functions */
@@ -71,3 +95,5 @@ let createIcon = (iconClasses) => {
 
 // Event Listers
 form.addEventListener('submit', addItem);
+itemList.addEventListener('click', removeItem);
+itemClear.addEventListener('click', clearItems);
