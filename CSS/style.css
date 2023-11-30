@@ -95,6 +95,9 @@ main #app-title {
 #item-list-container ul .item:hover {
   filter: drop-shadow(-3px 5px 5px #b2959d);
 }
+#item-list-container ul .edit-mode {
+  background-color: #9cadce !important;
+}
 #item-list-container ul .remove-item-btn {
   background-color: transparent;
   color: rgb(62, 21, 21);

@@ -14,6 +14,8 @@ const userInput = document.getElementById('item-input');
 const itemList = document.getElementById('item-list');
 const itemFilter = document.getElementById('filter');
 const itemClear = document.getElementById('clear-display');
+let isEditMode = false;
+const formBtn = form.querySelector('button');
 
 /* Main Functions */
 
@@ -34,6 +36,23 @@ let onAddItemSubmit = (event) => {
     if (newItem === '') {
         alert('Please add an item.');
         return;
+    }
+
+    // Check for edit mode
+    if(isEditMode) {
+       const itemToEdit = itemList.querySelector('.edit-mode');
+       
+       removeItemFromStorage(itemToEdit.textContent);
+       itemToEdit.classList.remove('edit-mode');
+       itemToEdit.remove();
+       isEditMode = false;
+    } else {
+        if(checkIfItemExists(newItem)){
+            alert('That items already exists!');
+            // Reset Form after the alert message is shown
+            form.reset();
+            return;
+        }
     }
 
     // Create item to DOM
@@ -97,6 +116,15 @@ let onItemClick = (event) => {
     if (event.target.parentElement.classList.contains('remove-item-btn')) {
         removeItem(event.target.parentElement.parentElement)
     }
+    else {
+        setItemToEdit(event.target);
+    }
+}
+
+// Check 
+let checkIfItemExists = (item) => {
+    const itemsFromStorage = getItemsFromStorage();
+    return itemsFromStorage.includes(item);
 }
 
 // Remove items function
@@ -136,6 +164,23 @@ let clearItems = () => {
     // Check the DOM to reset the state of the DOM to not display 
     // the clear button and filter input
     checkUI();
+}
+
+// Edit items
+let setItemToEdit = (item) => {
+
+    isEditMode = true;
+
+    // Iterate through the list items and remove the class edit mode to avoid multiple items going into edit mode
+    itemList.querySelectorAll('li').forEach(i => i.classList.remove('edit-mode'));
+    
+    // Add class edit mode and update the add item button to have a pen icon instead of +
+    item.classList.add('edit-mode');
+    formBtn.innerHTML = '<i class="fa-solid fa-pen"></i>';
+    formBtn.style.backgroundColor = '#d4afb9';
+
+    // Grab the value of the list item clicked that is in edit more
+    userInput.value = item.textContent;
 }
 
 // Filter items based on user input filter
@@ -179,6 +224,12 @@ let checkUI = () => {
         itemClear.style.display = 'block';
         itemFilter.style.display = 'block';
     }
+
+    // Reset form button to add button
+    formBtn.innerHTML = '<i class="fa-solid fa-plus"></i>';
+    formBtn.style.backgroundColor = "#9cadce";
+
+    isEditMode = false;
 }
 
 

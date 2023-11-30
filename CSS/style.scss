@@ -105,6 +105,10 @@ main {
       }
     }
 
+    .edit-mode {
+      background-color: #9cadce !important;
+    }
+
     .remove-item-btn{
       background-color: transparent;
       color: rgb(62, 21, 21);
@@ -130,4 +134,5 @@ main {
       filter: drop-shadow(-3px 5px 5px #9cadce);
     }
 }
+
 // Create an alert box
